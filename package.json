@@ -18,12 +18,13 @@
     "@types/markdown-it": "^12.2.3",
     "firebase": "^9.9.2",
     "fs": "^0.0.1-security",
+    "markdown-it": "^13.0.1",
+    "markdown-it-anchor": "^8.6.4",
+    "markdown-it-for-inline": "^0.1.1",
     "net": "^1.0.2",
     "next": "12.2.5",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
-    "react-markdown": "^8.0.3",
-    "rehype-raw": "^6.1.1",
     "tls": "^0.0.1"
   },
   "devDependencies": {

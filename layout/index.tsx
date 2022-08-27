@@ -2,8 +2,7 @@ import { Toolbar, Box, Paper } from '@mui/material'
 import Head from 'next/head'
 import { ReactNode } from 'react'
 import LayoutBar from './bar'
-import { TrustedMarkdown } from '../components/md'
-import Typo from '../styles/Typo.module.css'
+import { TrustedMarkdown } from '../components/markdown'
 import LayoutTwitterCard from './card'
 
 type LayoutProps = {
@@ -56,7 +55,7 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
                     p: 3,
                     textAlign: 'center',
                 }}>
-                    <TrustedMarkdown className={Typo.typo}>
+                    <TrustedMarkdown>
                         {profile}
                     </TrustedMarkdown>
                 </Paper>
@@ -82,7 +81,7 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
                 p: 3,
                 textAlign: 'center'
             }}>
-                <TrustedMarkdown className={Typo.typo}>
+                <TrustedMarkdown>
                     {profile}
                 </TrustedMarkdown>
             </Paper>

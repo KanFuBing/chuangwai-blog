@@ -5,13 +5,12 @@ import Layout from '../../layout'
 import getDocSnap, { db } from '../../utils/firebase'
 import propsWrapper from '../../utils/ssr'
 import { Article, BlogPageProps } from '../../utils/types'
-import Typo from '../../styles/Typo.module.css'
 import { Comment, ArticleText } from '../../utils/types'
 import Comments from '../../components/comments'
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { useState } from 'react'
 import NewComment from '../../components/newcomment'
-import { TrustedMarkdown } from '../../components/md'
+import { TrustedMarkdown } from '../../components/markdown'
 
 type ArticlePageProps = BlogPageProps & {
     docs: (Article | ArticleText | Comment)[]
@@ -31,7 +30,7 @@ const ArticlePage = ({ docs, settings }: ArticlePageProps) => {
                 {new Date(time.seconds * 1000).toLocaleDateString()}
             </Typography>
             <Tags tags={tags}></Tags>
-            <TrustedMarkdown className={Typo.typo}>
+            <TrustedMarkdown>
                 {md}
             </TrustedMarkdown>
             <Divider sx={{ boxShadow: '3px 3px 3px black' }}></Divider>

@@ -1,11 +1,10 @@
 import { IconButton, Paper, Typography } from '@mui/material'
-import Typo from '../styles/Typo.module.css'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Comment } from '../utils/types'
 import { User, onAuthStateChanged } from 'firebase/auth'
 import { useState, useEffect } from 'react'
 import { authentication, deleteFbDoc } from '../utils/firebase'
-import Markdown from './md'
+import Markdown from './markdown'
 
 type CommentsProps = {
     comments: Comment[]
@@ -31,7 +30,7 @@ const Comments = ({ comments }: CommentsProps) => {
         <>
             {
                 comments.filter(comment => !deletedCommentsIds.has(comment.id)).map((comment, index) => (
-                    <Paper elevation={3} key={index} className={Typo.typo} sx={{
+                    <Paper elevation={3} key={index} sx={{
                         padding: 3,
                         whiteSpace: 'pre-line',
                         position: 'relative',
@@ -50,9 +49,7 @@ const Comments = ({ comments }: CommentsProps) => {
                         <Typography variant='body1'>
                             {comment.user}
                         </Typography>
-                        <Markdown
-                            className={Typo.typoComment}
-                        >
+                        <Markdown>
                             {comment.md}
                         </Markdown>
                     </Paper>

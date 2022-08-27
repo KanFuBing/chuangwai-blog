@@ -7,6 +7,8 @@
 以 Google 免费服务 [`Firebase`](https://firebase.google.com/) 的 `Firestore` 和 `Storage` 为后端，前端使用 `Next.js` 和 `Material UI`。完全使用安全规则鉴权，坚持不使用 API 控制读写权限。
 
 已有功能：
+- 采用 [`Markdown-it`](https://github.com/markdown-it/markdown-it) 实现 Markdown 支持
+- 侧边栏简介
 - 在 `/console` 路径下的在线编辑器
 - 用 `Middleware` 屏蔽大陆 IP
 - 标签分类（用空格分割标签）
