@@ -34,13 +34,17 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
             padding: '0 2%',
             opacity: 0.9,
         }}>
-            <Paper elevation={3} sx={{
+            <Box sx={{
                 width: '65%',
-                padding: 2,
-                mr: '2%',
             }}>
-                {children}
-            </Paper>
+                <Paper elevation={3} sx={{
+                    width: '100%',
+                    padding: 2,
+                    mr: '2%',
+                }}>
+                    {children}
+                </Paper>
+            </Box>
             <Box sx={{
                 width: '33%'
             }}>
