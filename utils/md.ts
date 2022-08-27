@@ -13,7 +13,7 @@ const MarkdownItLink = (tokens: any, idx: any) => {
 // 遍历链接，在 Markdown 转换的链接中使用 router.push() 跳转，避免重新加载页面
 export const markdownRouterLinks = `
 <script>
-    const links = document.links
+    links = document.links
     for (let index = 0; index < links.length; index++) {
         const item = links.item(index)
         if (item && item.id === 'Markdown Link') {
