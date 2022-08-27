@@ -15,13 +15,13 @@ type LayoutProps = {
 
 const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
     <Box sx={{
-        position: 'fixed',
         width: '100%',
         height: '100%',
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         overflowY: 'auto',
+        overflowX: 'hidden'
     }}>
         <LayoutTwitterCard title={title}></LayoutTwitterCard>
         <Head>
@@ -29,6 +29,7 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
         </Head>
         <LayoutBar title={name}></LayoutBar>
         <Toolbar></Toolbar>
+
         <Box sx={{
             display: { sm: 'flex', xs: 'none' },
             m: '2% 0',
@@ -42,7 +43,7 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
                 <Paper elevation={3} sx={{
                     width: '100%',
                     padding: 2,
-                    
+
                 }}>
                     {children}
                 </Paper>

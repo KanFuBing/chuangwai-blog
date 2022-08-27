@@ -40,8 +40,7 @@ const LayoutBar = ({ title }: LayoutBarProps) => {
 
     return (
         <AppBar color='transparent' position='fixed' sx={{
-            top: '0',
-            width: '100%',
+            top: 0,
             backdropFilter: 'blur(5px)'
         }}>
             <Toolbar>
