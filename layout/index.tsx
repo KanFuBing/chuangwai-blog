@@ -15,9 +15,8 @@ type LayoutProps = {
 
 const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
     <Box sx={{
-        position: 'fixed',
         width: '100%',
-        height: '100%',
+        height: '100vh',
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',

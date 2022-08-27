@@ -11,9 +11,8 @@ const MarkdownItLink = (tokens: any, idx: any) => {
 }
 
 // 遍历链接，在 Markdown 转换的链接中使用 router.push() 跳转，避免重新加载页面
-export const markdownRouterLinks = `
-<script>
-    links = document.links
+export const routerifyMarkdownLinks = () => {
+    const links = document.links
     for (let index = 0; index < links.length; index++) {
         const item = links.item(index)
         if (item && item.id === 'Markdown Link') {
@@ -23,8 +22,28 @@ export const markdownRouterLinks = `
             }
         }
     }
-</script>
-`
+}
+
+// 标记 ID，方便识别并执行
+const MarkdownItScript = (tokens: any, idx: any) => {
+    if (tokens[idx].content === '<script>') {
+        tokens[idx].content = "<script id='Markdown Script'>"
+    }
+}
+
+// 获取所有 Markdown 中的脚本以供加载完成调用（Next.js 无法在路由后自动执行 script 标签）
+export const getMarkdownScripts = () => {
+    const scripts = document.scripts
+    const markdownScripts = []
+    for (let index = 0; index < scripts.length; index++) {
+        const item = scripts.item(index)
+        if (item && item.id === 'Markdown Script') {
+            item.id = 'Executing Markdown Script'
+            markdownScripts.push(item.innerHTML)
+        }
+    }
+    return markdownScripts.join(';')
+}
 
 /**
  * 一律开启 { breaks: true }，通过遇到 \n 转为 <br /> 避免 CSS 中 pre-line 的使用
@@ -41,5 +60,6 @@ const markdown: MarkdownIt = MarkdownIt({ breaks: true })
 export const markdownWithHtml: MarkdownIt = MarkdownIt({ html: true, breaks: true })
     .use(MarkdownItAnchor)
     .use(require('markdown-it-for-inline'), 'url_next', 'link_open', MarkdownItLink)
+    .use(require('markdown-it-for-inline'), 'script_next', 'html_inline', MarkdownItScript)
 
 export default markdown

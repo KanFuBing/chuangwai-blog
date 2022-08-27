@@ -1,22 +1,34 @@
+import { useEffect } from 'react'
 import Typo from '../styles/typo.module.css'
-import markdown, { markdownRouterLinks, markdownWithHtml } from '../utils/md'
+import markdown, { routerifyMarkdownLinks, markdownWithHtml, getMarkdownScripts } from '../utils/md'
 
 type MarkdownProps = {
     children: string
 }
 
-const Markdown = ({ children }: MarkdownProps) => (
-    <div
-        dangerouslySetInnerHTML={{ __html: `${markdownRouterLinks} ${markdown.render(children)}` }}
-        className={Typo.typo}
-    ></div>
-)
+const Markdown = ({ children }: MarkdownProps) => {
+    useEffect(() => {
+        routerifyMarkdownLinks()
+    }, [])
+    return (
+        <div
+            dangerouslySetInnerHTML={{ __html: `${markdown.render(children)}` }}
+            className={Typo.typo}
+        ></div >
+    )
+}
 
-export const TrustedMarkdown = ({ children }: MarkdownProps) => (
-    <div
-        dangerouslySetInnerHTML={{ __html: `${markdownRouterLinks} ${markdownWithHtml.render(children)}` }}
-        className={Typo.typo}
-    ></div>
-)
+export const TrustedMarkdown = ({ children }: MarkdownProps) => {
+    useEffect(() => {
+        routerifyMarkdownLinks()
+        eval(getMarkdownScripts())
+    }, [])
+    return (
+        <div
+            dangerouslySetInnerHTML={{ __html: `${markdownWithHtml.render(children)}` }}
+            className={Typo.typo}
+        ></div>
+    )
+}
 
 export default Markdown
