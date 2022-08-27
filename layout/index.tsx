@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import LayoutBar from './bar'
 import { TrustedMarkdown } from '../components/md'
 import Typo from '../styles/Typo.module.css'
+import LayoutTwitterCard from './card'
 
 type LayoutProps = {
     title: string
@@ -23,6 +24,7 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
         backgroundRepeat: 'no-repeat',
         overflowY: 'auto',
     }}>
+        <LayoutTwitterCard title={title}></LayoutTwitterCard>
         <Head>
             <title>{`${title} | ${name}`}</title>
         </Head>
@@ -36,11 +38,12 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
         }}>
             <Box sx={{
                 width: '65%',
+                mr: '2%',
             }}>
                 <Paper elevation={3} sx={{
                     width: '100%',
                     padding: 2,
-                    mr: '2%',
+                    
                 }}>
                     {children}
                 </Paper>
