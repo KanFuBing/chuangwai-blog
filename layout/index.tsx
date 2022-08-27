@@ -46,7 +46,7 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
             }}>
                 <Paper elevation={3} sx={{
                     width: '100%',
-                    p: '2px 2px',
+                    p: 3,
                     textAlign: 'center',
                 }}>
                     <TrustedMarkdown className={Typo.typo}>
@@ -72,7 +72,7 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
             <br></br>
             <Paper elevation={3} sx={{
                 width: '100%',
-                p: '2px 2px',
+                p: 3,
                 textAlign: 'center'
             }}>
                 <TrustedMarkdown className={Typo.typo}>
