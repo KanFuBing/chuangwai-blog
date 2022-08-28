@@ -22,8 +22,8 @@ export const TrustedMarkdown = ({ children }: MarkdownProps) => {
     useEffect(() => {
         routerifyMarkdownLinks()
         try {
-            eval(getMarkdownScripts())
-        } catch (error) {}
+            eval.call(window, getMarkdownScripts())
+        } catch (error) { }
     }, [])
     return (
         <div
