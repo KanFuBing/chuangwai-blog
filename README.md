@@ -15,6 +15,10 @@
 - 标签分类（用空格分割标签）
 - 图床
 - 评论
+
+已知问题和权宜之计：
+
+- [ ] 无法自动执行 script 标签；通过手动加上 `id='Markdown Script'` 并于加载完毕后在全局范围内执行 
   
 > [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKanFuBing%2Fchuangwai-blog&env=NEXT_PUBLIC_FIREBASE_CONFIG&envDescription=Firebase%20Configuration)
 > 
