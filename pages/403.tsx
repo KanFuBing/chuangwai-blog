@@ -1,5 +1,4 @@
 import { Box } from "@mui/material"
-import Image from "next/image"
 import Link from "next/link"
 
 const Status403 = () => (
@@ -14,7 +13,7 @@ const Status403 = () => (
         backgroundSize: '30px 30px'
     }}>
         <Link href='/'>
-            <Image alt='403' src={require('./status/403.png')} width='172' height='127'></Image>
+            <img alt='403' src={require('./status/403.png')}></img>
         </Link>
     </Box>
 )
