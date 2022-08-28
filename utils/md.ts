@@ -26,7 +26,9 @@ export const routerifyMarkdownLinks = () => {
 
 // 标记 ID，方便识别并执行
 const MarkdownItScript = (tokens: any, idx: any) => {
+    console.log(tokens[idx])
     if (tokens[idx].content === '<script>') {
+        console.log(0)
         tokens[idx].content = "<script id='Markdown Script'>"
     }
 }

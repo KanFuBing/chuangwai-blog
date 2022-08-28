@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import Image from "next/image"
+import Head from "next/head"
 import Link from "next/link"
 
 const Status500 = () => (
@@ -13,6 +13,9 @@ const Status500 = () => (
         background: 'linear-gradient(45deg, #e7e9fd 25%, #d0d9ff 0, #d0d9ff 50%, #e7e9fd 0, #e7e9fd 75%, #d0d9ff 0)',
         backgroundSize: '30px 30px'
     }}>
+        <Head>
+            <title>403</title>
+        </Head>
         <Link href='/'>
             <img alt='500' src='/status/500.png'></img>
         </Link>
