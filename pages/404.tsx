@@ -14,7 +14,7 @@ const Status404 = () => (
         backgroundSize: '30px 30px'
     }}>
         <Link href='/'>
-            <img alt='404' src={require('./status/404.png')}></img>
+            <img alt='404' src='/status/404.png'></img>
         </Link>
     </Box>
 )

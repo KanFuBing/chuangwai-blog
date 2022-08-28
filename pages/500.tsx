@@ -14,7 +14,7 @@ const Status500 = () => (
         backgroundSize: '30px 30px'
     }}>
         <Link href='/'>
-            <img alt='500' src={require('./status/500.png')}></img>
+            <img alt='500' src='/status/500.png'></img>
         </Link>
     </Box>
 )
