@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Typo from '../styles/typo.module.css'
-import markdown, { routerifyMarkdownLinks, markdownWithHtml, getMarkdownScripts } from '../utils/md'
+import markdown, { routerifyMarkdownLinks, markdownWithHtml } from '../utils/md'
 
 type MarkdownProps = {
     children: string
@@ -21,7 +21,6 @@ const Markdown = ({ children }: MarkdownProps) => {
 export const TrustedMarkdown = ({ children }: MarkdownProps) => {
     useEffect(() => {
         routerifyMarkdownLinks()
-        eval(getMarkdownScripts())
     }, [])
     return (
         <div
