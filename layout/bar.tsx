@@ -6,7 +6,6 @@ import { GoogleAuthProvider, signInWithPopup, AuthProvider, GithubAuthProvider, 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { authentication } from '../utils/firebase'
-import Image from 'next/image'
 
 type LayoutBarProps = {
     title: string
@@ -53,7 +52,7 @@ const LayoutBar = ({ title }: LayoutBarProps) => {
                     avatar
                         ?
                         <IconButton>
-                            <Image src={avatar} width={40} height={40} style={{ borderRadius: 20 }}></Image>
+                            <img src={avatar} style={{ width: 40, borderRadius: 20 }}></img>
                         </IconButton>
                         :
                         <IconButton onClick={handleClick}>
