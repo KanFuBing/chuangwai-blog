@@ -26,9 +26,7 @@ export const routerifyMarkdownLinks = () => {
 
 // 标记 ID，方便识别并执行
 const MarkdownItScript = (tokens: any, idx: any) => {
-    console.log(tokens[idx])
     if (tokens[idx].content === '<script>') {
-        console.log(0)
         tokens[idx].content = "<script id='Markdown Script'>"
     }
 }
@@ -62,6 +60,7 @@ const markdown: MarkdownIt = MarkdownIt({ breaks: true })
 export const markdownWithHtml: MarkdownIt = MarkdownIt({ html: true, breaks: true })
     .use(MarkdownItAnchor)
     .use(require('markdown-it-for-inline'), 'url_next', 'link_open', MarkdownItLink)
-    .use(require('markdown-it-for-inline'), 'script_next', 'html_inline', MarkdownItScript)
+    .use(require('markdown-it-for-inline'), 'inline_script_next', 'html_inline', MarkdownItScript)
+    .use(require('markdown-it-for-inline'), 'block_script_next', 'html_block', MarkdownItScript)
 
 export default markdown
