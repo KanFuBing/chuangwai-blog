@@ -15,8 +15,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const prefix = `https://${req.headers.host}/`
     const articleIdsPaths = articles.map(article => `${prefix}article/${article.id}`)
     const articleTagsPaths = Array.from(new Set(
-        articles.flatMap(article => article.tags.map(tag => `${prefix}tag/${tag}`))
-    ))  // 提取各文章的标签数组并化为一维数组后去重
+        articles.flatMap(article => article.tags.map(tag => encodeURI(`${prefix}tag/${tag}`)))
+    ))  // 提取各文章的百分号编码的标签数组并化为一维数组后去重
 
     const urls = [
         prefix,
