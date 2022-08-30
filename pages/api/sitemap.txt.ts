@@ -6,7 +6,11 @@ import { Article } from "../../utils/types";
 // For Google
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const articlesSnap = getColSnap('articles')
-    const articles = (await propsWrapper({ querySnapPromises: [articlesSnap] }) as { props: Article[] }).props
+    const articles = (
+        await propsWrapper(
+            { querySnapPromises: [articlesSnap] }
+        ) as { props: { docs: Article[] } }
+    ).props.docs
 
     const prefix = `https://${req.headers.host}/`
     const articleIdsPaths = articles.map(article => `${prefix}article/${article.id}`)
