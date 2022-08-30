@@ -22,7 +22,7 @@ const HomePage = ({ docs, settings }: HomePageProps) => {
 
   useEffect(() => {
     // 初始化游标
-    const q = query(collection(db, 'articles'), orderBy('time', 'desc'), limit(1))
+    const q = query(collection(db, 'articles'), orderBy('time'), limit(1))
     getDocs(q).then(querySnap => {
       setCursor(querySnap.docs[0])
     })
@@ -31,7 +31,7 @@ const HomePage = ({ docs, settings }: HomePageProps) => {
   const loadMore = async () => {
     if (cursor) {
       setLoadButtonStatus('disabled')
-      const loadQ = query(collection(db, 'articles'), orderBy('time', 'desc'), startAfter(cursor), limit(ARTICLES_PER_LOAD))
+      const loadQ = query(collection(db, 'articles'), orderBy('time'), startAfter(cursor), limit(ARTICLES_PER_LOAD))
       const loadingArticlesSnap = await getDocs(loadQ)
       const loadingArticles = getQuerySnapDocsData(loadingArticlesSnap)
       setArticles(articles => articles.concat(loadingArticles as Article[]))
@@ -60,7 +60,7 @@ const HomePage = ({ docs, settings }: HomePageProps) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const beginArticleSnapPromise = getDocs(query(collection(db, 'articles'), orderBy('time', 'desc'), limit(1)))
+  const beginArticleSnapPromise = getDocs(query(collection(db, 'articles'), orderBy('time'), limit(1)))
   return await propsWrapper({ querySnapPromises: [beginArticleSnapPromise] })
 }
 
