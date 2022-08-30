@@ -31,8 +31,7 @@ const Comments = ({ comments }: CommentsProps) => {
             {
                 comments.filter(comment => !deletedCommentsIds.has(comment.id)).map((comment, index) => (
                     <Paper elevation={3} key={index} sx={{
-                        padding: 3,
-                        whiteSpace: 'pre-line',
+                        padding: 1,
                         position: 'relative',
                         marginTop: 4,
                     }}>

@@ -8,6 +8,7 @@
 
 已有功能：
 - `Firebase` 自带的 `Google Analytics`
+- 自动生成于 `/api/sitemap.txt` 的 `Google Sitemap`
 - 采用 [`Markdown-it`](https://github.com/markdown-it/markdown-it) 实现 Markdown 支持
 - 侧边栏简介
 - 在 `/console` 路径下的在线编辑器
