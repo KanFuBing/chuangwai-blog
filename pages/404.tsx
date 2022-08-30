@@ -14,7 +14,7 @@ const Status404 = () => (
         backgroundSize: '30px 30px'
     }}>
         <Head>
-            <title>403</title>
+            <title>404</title>
         </Head>
         <Link href='/'>
             <img alt='404' src='/status/404.png'></img>

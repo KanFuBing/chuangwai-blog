@@ -14,7 +14,7 @@ const Status500 = () => (
         backgroundSize: '30px 30px'
     }}>
         <Head>
-            <title>403</title>
+            <title>500</title>
         </Head>
         <Link href='/'>
             <img alt='500' src='/status/500.png'></img>
