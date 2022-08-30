@@ -44,9 +44,8 @@ const propsWrapper = async ({
         const settingsSnap = snaps[0] as DocumentSnapshot<DocumentData>
         const settings = settingsSnap.data()
         const docs = getDocSnapsDocsData(
-            docSnaps.concat(([] as DocumentSnapshot<DocumentData>[]).concat.apply(
-                [], querySnaps.map(querySnap => querySnap.docs)
-            )) // 查询快照数组（二维数组）化文档快照（一维数组）
+            docSnaps.concat(querySnaps.flatMap(querySnap => querySnap.docs))
+            // 含多个文档快照的查询快照数组（二维数组）化文档快照数组（一维数组）
         )
         const props = { ...otherProps, settings, docs }
         return { props }

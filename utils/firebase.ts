@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { addDoc, doc, collection, DocumentData, DocumentSnapshot, getDoc, getFirestore, QuerySnapshot, setDoc, deleteDoc, updateDoc, FieldValue, AddPrefixToKeys } from 'firebase/firestore'
+import { addDoc, doc, collection, DocumentData, DocumentSnapshot, getDoc, getFirestore, QuerySnapshot, setDoc, deleteDoc, updateDoc, FieldValue, AddPrefixToKeys, getDocs } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { getStorage } from "firebase/storage";
 
@@ -11,6 +11,10 @@ export const authentication = () => {
     return getAuth()
 }
 
+const getDocSnap = (colName: string, docName: string) => (
+    getDoc(doc(db, colName, docName))
+)
+
 export const getQuerySnapDocsData = (snap: QuerySnapshot<DocumentData>) => (
     snap.docs.map(doc => ({ ...doc.data(), id: doc.id }))
 )
@@ -19,8 +23,8 @@ export const getDocSnapsDocsData = (snap: DocumentSnapshot<DocumentData>[]) => (
     snap.map(doc => ({ ...doc.data(), id: doc.id }))
 )
 
-const getDocSnap = (colName: string, docName: string) => (
-    getDoc(doc(db, colName, docName))
+export const getColSnap = (colName: string) => (
+    getDocs(collection(db, colName))
 )
 
 export const addFbDoc = (colName: string, data: Object) => (
