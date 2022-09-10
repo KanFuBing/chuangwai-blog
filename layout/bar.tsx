@@ -3,12 +3,12 @@ import GoogleIcon from '@mui/icons-material/Google'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { AppBar, Toolbar, Typography, IconButton, Box, Menu, MenuItem, ListItemIcon, ListItemText } from '@mui/material'
-import { GoogleAuthProvider, signInWithPopup, AuthProvider, GithubAuthProvider, onAuthStateChanged, TwitterAuthProvider } from 'firebase/auth'
+import { GoogleAuthProvider, signOut as firebaseSignOut, signInWithPopup, AuthProvider, GithubAuthProvider, onAuthStateChanged, TwitterAuthProvider } from 'firebase/auth'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { authentication } from '../utils/firebase'
 
-type LayoutBarProps = {
+export type LayoutBarProps = {
     title: string
 }
 
@@ -28,6 +28,11 @@ const LayoutBar = ({ title }: LayoutBarProps) => {
         signInWithPopup(auth, provider).then(({ user }) => {
             setAvatar(user.photoURL)
         })
+    }
+
+    const signOut = () => {
+        const auth = authentication()
+        firebaseSignOut(auth)
     }
 
     useEffect(() => {
@@ -52,7 +57,7 @@ const LayoutBar = ({ title }: LayoutBarProps) => {
                 {
                     avatar
                         ?
-                        <IconButton>
+                        <IconButton onClick={signOut}>
                             <img src={avatar} style={{ width: 40, borderRadius: 20 }}></img>
                         </IconButton>
                         :

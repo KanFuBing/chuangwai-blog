@@ -18,11 +18,11 @@ type ArticlePageProps = BlogPageProps & {
 
 const ArticlePage = ({ docs, settings }: ArticlePageProps) => {
     const { md } = docs.find(doc => doc.hasOwnProperty('md') && !doc.hasOwnProperty('user')) as ArticleText
-    const { title, tags, time, id } = docs.find(doc => doc.hasOwnProperty('title')) as Article
+    const { title, tags, time, id, cover } = docs.find(doc => doc.hasOwnProperty('title')) as Article
     const comments = docs.filter(doc => doc.hasOwnProperty('md') && doc.hasOwnProperty('user')) as Comment[]
     const [userComments, setUserComments] = useState<Comment[]>([])
     return (
-        <Layout title={title} {...settings}>
+        <Layout title={title} cover={cover} {...settings}>
             <Typography variant='h2'>
                 {title}
             </Typography>

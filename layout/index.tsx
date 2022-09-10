@@ -1,19 +1,17 @@
 import { Toolbar, Box, Paper } from '@mui/material'
 import Head from 'next/head'
 import { ReactNode } from 'react'
-import LayoutBar from './bar'
+import LayoutBar, { LayoutBarProps } from './bar'
 import { TrustedMarkdown } from '../components/markdown'
-import LayoutTwitterCard from './card'
+import LayoutTwitterCard, { LayoutTwitterCardProps } from './card'
 
-type LayoutProps = {
-    title: string
+type LayoutProps = LayoutTwitterCardProps & LayoutBarProps & {
     profile: string
     name: string
-    bg: string
     children: ReactNode
 }
 
-const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
+const Layout = ({ title, cover, name, bg, profile, children }: LayoutProps) => (
     <Box sx={{
         width: '100%',
         height: '100vh',
@@ -23,7 +21,7 @@ const Layout = ({ title, name, bg, profile, children }: LayoutProps) => (
         overflowY: 'auto',
         overflowX: 'hidden'
     }}>
-        <LayoutTwitterCard title={title}></LayoutTwitterCard>
+        <LayoutTwitterCard title={title} cover={cover} bg={bg}></LayoutTwitterCard>
         <Head>
             <title>{`${title} | ${name}`}</title>
         </Head>
