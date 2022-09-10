@@ -13,7 +13,7 @@ export type LayoutBarProps = {
 }
 
 const LayoutBar = ({ title }: LayoutBarProps) => {
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
     const open = Boolean(anchorEl)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget)
@@ -29,12 +29,12 @@ const LayoutBar = ({ title }: LayoutBarProps) => {
             setAvatar(user.photoURL)
         })
     }
-
     const signOut = () => {
         const auth = authentication()
-        firebaseSignOut(auth)
+        firebaseSignOut(auth).then(() => {
+            setAvatar(null)
+        })
     }
-
     useEffect(() => {
         const auth = authentication()
         onAuthStateChanged(auth, (user) => {
