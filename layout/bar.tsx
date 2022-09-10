@@ -1,8 +1,9 @@
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import GoogleIcon from '@mui/icons-material/Google'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import TwitterIcon from '@mui/icons-material/Twitter'
 import { AppBar, Toolbar, Typography, IconButton, Box, Menu, MenuItem, ListItemIcon, ListItemText } from '@mui/material'
-import { GoogleAuthProvider, signInWithPopup, AuthProvider, GithubAuthProvider, onAuthStateChanged } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup, AuthProvider, GithubAuthProvider, onAuthStateChanged, TwitterAuthProvider } from 'firebase/auth'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { authentication } from '../utils/firebase'
@@ -66,6 +67,14 @@ const LayoutBar = ({ title }: LayoutBarProps) => {
                 open={open}
                 onClose={handleClose}
             >
+                <MenuItem onClick={() => signIn(new TwitterAuthProvider())}>
+                    <ListItemIcon>
+                        <TwitterIcon></TwitterIcon>
+                    </ListItemIcon>
+                    <ListItemText>
+                        通过 Twitter 登录
+                    </ListItemText>
+                </MenuItem>
                 <MenuItem onClick={() => signIn(new GoogleAuthProvider())}>
                     <ListItemIcon>
                         <GoogleIcon></GoogleIcon>

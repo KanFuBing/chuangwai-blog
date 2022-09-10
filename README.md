@@ -8,6 +8,7 @@
 
 已有功能：
 - `Firebase` 自带的 `Google Analytics`
+- 基于 `Firebase Authentication` 的 `Twitter`、`GitHub` 和 `Google` 登入
 - 自动生成于 `/api/sitemap.txt` 的 `Google Sitemap`
 - 采用 [`Markdown-it`](https://github.com/markdown-it/markdown-it) 实现 Markdown 支持
 - 侧边栏简介
@@ -23,7 +24,7 @@
   
 > [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKanFuBing%2Fchuangwai-blog&env=NEXT_PUBLIC_FIREBASE_CONFIG&envDescription=Firebase%20Configuration)
 > 
-> 若想使用，请创建一个 `Firebase` 项目，然后参考以下内容：
+> 若想使用，请创建一个 `Firebase` 项目，设置好 `Analytics`、`Authentication`、`Firestore`、`Storage`，然后参考以下内容：
 > 
 > Firestore 安全规则：
 > ```js
