@@ -12,7 +12,6 @@ export default async (req, res) => {
     }
     else {
         const { md } = articleProps.props.docs[0]
-        res.setDefaultEncoding('utf-8')
-        res.status(200).send(md)
+        res.status(200).send(Buffer.from(md).toString('base64'))
     }
 }
