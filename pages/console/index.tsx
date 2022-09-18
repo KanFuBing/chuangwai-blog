@@ -32,7 +32,7 @@ const ConsolePage = ({ docs, settings }: ConsolePageProps) => {
     setSelectedFile((event.target.files as FileList)[0])
   };
   const [url, setUrl] = useState('')
-  const upload = async () => {
+  const upload =  () => {
     if (selectedFile) {
       const fileName = `${Math.random()}.${selectedFile.name.split('.')[1]}`
       uploadBytes(ref(storage, fileName), selectedFile).then(async snapshot => {
@@ -40,7 +40,7 @@ const ConsolePage = ({ docs, settings }: ConsolePageProps) => {
       })
     }
   }
-  const copyUrl = async () => {
+  const copyUrl =  () => {
     navigator.clipboard.writeText(url);
   }
 
