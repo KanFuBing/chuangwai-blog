@@ -28,9 +28,14 @@ export const routerifyMarkdownLinks = () => {
 
 // 标记 ID，方便识别并执行
 const MarkdownItScript = (tokens: Token[], idx: number) => {
-    if (tokens[idx].content === '<script>') {
-        tokens[idx].content = "<script id='Markdown Script'>"
+    if (tokens[idx].content.startsWith('<script>')) {
+        tokens[idx].content.replace('<script>', "<script id='Markdown Script'>")
     }
+}
+
+// 图片懒加载
+const MarkdownItImage = (tokens: Token[], idx: number) => {
+    tokens[idx].attrPush(['loading', 'lazy'])
 }
 
 // 获取所有 Markdown 中的脚本以供加载完成调用（Next.js 无法在路由后自动执行 script 标签）
@@ -80,7 +85,7 @@ export const markdownWithHtml: MarkdownIt = MarkdownIt({ html: true, breaks: tru
     .use(MarkdownItAnchor)
     .use(MarkdownItTocDoneRight)
     .use(require('markdown-it-for-inline'), 'url_next', 'link_open', MarkdownItLink)
-    .use(require('markdown-it-for-inline'), 'inline_script_next', 'html_inline', MarkdownItScript)
+    .use(require('markdown-it-for-inline'), 'lazyload_next', 'image', MarkdownItImage)
     .use(require('markdown-it-for-inline'), 'block_script_next', 'html_block', MarkdownItScript)
     .use(require('markdown-it-block-image'), {
         outputContainer: 'center',

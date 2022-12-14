@@ -1,69 +1,54 @@
-import { IconButton, Box } from '@mui/material'
-import { collection, getDocs, limit, orderBy, query, startAfter, QueryDocumentSnapshot } from 'firebase/firestore'
+import { Box, Pagination, PaginationItem } from '@mui/material'
 import { GetServerSideProps } from 'next'
-import { useState } from 'react'
 import ArticlePreview from '../components/preview'
 import Layout from '../layout'
-import { db, getQuerySnapDocsData } from '../utils/firebase'
 import propsWrapper from '../utils/ssr'
 import { BlogPageProps, Article } from '../utils/types'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { adminDb } from '../utils/admin'
-import lastElementOf from '../utils/data'
+import router from 'next/router'
+import { useEffect, useState } from 'react'
 
 type HomePageProps = BlogPageProps & {
   docs: Article[]
+  count: number
+  page: number
 }
 
-const ARTICLES_PER_LOAD = 5
+const ARTICLE_NUM_PER_PAGE = 5
 
-enum LoadStatus {
-  loading,
-  fullyLoaded,
-  free
-}
-
-const HomePage = ({ docs, settings }: HomePageProps) => {
-  const [articles, setArticles] = useState<Article[]>(docs)
-  const [loadStatus, setLoadStatus] = useState(LoadStatus.free)
-  const [cursor, setCursor] = useState(lastElementOf(docs).time)
-
-  const loadMore = async () => {
-    setLoadStatus(LoadStatus.loading)
-    const loadQ = query(collection(db, 'articles'), orderBy('time', 'desc'), startAfter(cursor), limit(ARTICLES_PER_LOAD))
-    const loadingArticlesSnap = await getDocs(loadQ)
-    const loadingArticles = getQuerySnapDocsData(loadingArticlesSnap) as Article[]
-
-    const displayArticles = articles.concat(loadingArticles)
-    setArticles(displayArticles)
-    setCursor(lastElementOf(displayArticles).time)
-    if (loadingArticles.length < ARTICLES_PER_LOAD) {
-      setLoadStatus(LoadStatus.fullyLoaded)
-    }
-    else {
-      setLoadStatus(LoadStatus.free)
-    }
-  }
-
+const HomePage = ({ docs, settings, count, page }: HomePageProps) => {
   return (
     <Layout title='主页' {...settings}>
       {
-        articles.map(article => (
+        docs.map(article => (
           <ArticlePreview {...article} key={article.id}></ArticlePreview>
         ))
       }
-      <Box sx={{ textAlign: 'center', display: loadStatus === LoadStatus.fullyLoaded ? 'none' : null }}>
-        <IconButton onClick={loadMore} disabled={loadStatus === LoadStatus.loading} >
-          <ExpandMoreIcon></ExpandMoreIcon>
-        </IconButton>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Pagination
+          variant='outlined'
+          color='primary'
+          page={page}
+          count={Math.ceil(count / ARTICLE_NUM_PER_PAGE)}
+          renderItem={(item) => (
+            <PaginationItem
+              {...item}
+              onClick={() => router.push(`?page=${item.page}`)}
+            />
+          )}
+        ></Pagination>
       </Box>
+
+      <br></br>
     </Layout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const beginArticleSnapPromise = adminDb.collection('articles').orderBy('time', 'desc').limit(ARTICLES_PER_LOAD).get()
-  return await propsWrapper({ querySnapPromises: [beginArticleSnapPromise] })
+  const page = parseInt(typeof ctx.query.page == 'string' ? ctx.query.page : '1')
+  const articlesSnapPromise = adminDb.collection('articles').orderBy('time', 'desc').offset(ARTICLE_NUM_PER_PAGE * (page - 1)).limit(ARTICLE_NUM_PER_PAGE).get()
+  return await propsWrapper({ querySnapPromises: [articlesSnapPromise], colToGetCount: 'articles', otherProps: { page } })
 }
 
 export default HomePage
