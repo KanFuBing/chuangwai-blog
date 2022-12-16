@@ -1,19 +1,12 @@
 # 窗外博客 ![](public/favicon-32x32.png)
 
-***自用的极简 Blog。***
-
-> 为了写博客而写代码，决不为写代码而写博客。
-
-以 Google 免费 Baas 服务 [`Firebase`](https://firebase.google.com/) 的 `Firestore` 和 `Storage` 为后端，前端使用 `Next.js` 和 `Material UI`。完全使用安全规则鉴权，坚持不使用 API 控制读写权限。
-
-目前，全面采用 `firebase-admin` 进行服务器端渲染。
+以 Google Baas 服务 [`Firebase`](https://firebase.google.com/) 的 `Firestore` 和 `Storage` 为后端，前端使用 `Next.js` 和 `Material UI`。完全使用安全规则鉴权，坚持不使用 API 控制读写权限。全面采用 `firebase-admin` 进行服务器端渲染。
 
 已有功能：
 - 基于 [`next-pwa`](https://www.npmjs.com/package/next-pwa) 的 `PWA`
 - `Firebase` 自带的 `Google Analytics` 和 `Performance`
 - `Firebase App Check` 避免博客被攻击或滥用
 - 基于 `Firebase Authentication` 的 `Twitter`、`GitHub` 和 `Google` 登入
-- 自动生成于 `/api/sitemap.txt` 的 `Google Sitemap`
 - 采用 [`Markdown-it`](https://github.com/markdown-it/markdown-it) 实现 `Markdown` 支持
 - 在 `/console` 路径下的在线编辑器和 Markdown 查看器
 - 用 `Middleware` 屏蔽大陆 IP

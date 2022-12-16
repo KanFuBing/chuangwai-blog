@@ -6,7 +6,6 @@ import propsWrapper from '../utils/ssr'
 import { BlogPageProps, Article } from '../utils/types'
 import { adminDb } from '../utils/admin'
 import router from 'next/router'
-import { useEffect, useState } from 'react'
 
 type HomePageProps = BlogPageProps & {
   docs: Article[]
@@ -25,20 +24,19 @@ const HomePage = ({ docs, settings, count, page }: HomePageProps) => {
         ))
       }
 
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Pagination
-          variant='outlined'
-          color='primary'
-          page={page}
-          count={Math.ceil(count / ARTICLE_NUM_PER_PAGE)}
-          renderItem={(item) => (
-            <PaginationItem
-              {...item}
-              onClick={() => router.push(`?page=${item.page}`)}
-            />
-          )}
-        ></Pagination>
-      </Box>
+      <Pagination
+        sx={{ display: 'flex', justifyContent: 'center' }}
+        variant='outlined'
+        color='primary'
+        page={page}
+        count={Math.ceil(count / ARTICLE_NUM_PER_PAGE)}
+        renderItem={(item) => (
+          <PaginationItem
+            {...item}
+            onClick={() => router.push(`?page=${item.page}`)}
+          />
+        )}
+      ></Pagination>
 
       <br></br>
     </Layout>
