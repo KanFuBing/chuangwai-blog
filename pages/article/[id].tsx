@@ -28,7 +28,7 @@ const ArticlePage = ({ docs, settings }: ArticlePageProps) => {
     }
     return (
         <Layout title={title} cover={cover} {...settings}>
-            <Typography variant='h2'>
+            <Typography variant='h3'>
                 {title}
             </Typography>
             <Typography>

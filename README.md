@@ -10,15 +10,14 @@
 - 采用 [`Markdown-it`](https://github.com/markdown-it/markdown-it) 实现 `Markdown` 支持
 - 在 `/console` 路径下的在线编辑器和 Markdown 查看器
 - 用 `Middleware` 屏蔽大陆 IP
-- 标签分类（用空格分割标签）
+- 标签分类（用空格分割标签）和标签说明
 - 侧边栏简介
-- 精确分页
+- 页码分页
 - 图床
 - 评论
 
-已知问题和权宜之计：
+已知问题：
 
-- [ ] 无法自动执行 script 标签；通过手动加上 `id='Markdown Script'` 并于加载完毕后在全局范围内执行 
 - [ ] `Sitemap` 无效
   
 > [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKanFuBing%2Fchuangwai-blog&env=NEXT_PUBLIC_FIREBASE_CONFIG,FIREBASE_ADMIN_CONFIG,RECAPTCHA_PUBLIC_KEY&envDescription=NEXT_PUBLIC_FIREBASE_CONFIG%3D%22Your%20Firebase%20Configuration%20in%20JSON%20Format%22%2C%20FIREBASE_ADMIN_CONFIG%3D%22Your%20Firebase%20Admin%20Service%20Account%20Configuration%20in%20JSON%20Format%22%2C%20RECAPTCHA_PUBLIC_KEY%3D%22Your%20ReCAPTCHA%20Public%20Key%20For%20App%20Check%22&demo-title=Chuangwai%20Blog&demo-description=%E7%AA%97%E5%A4%96%E6%B5%AE%E5%86%B0%EF%BC%8C%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9&demo-url=https%3A%2F%2Fchuangwai.top%2F&demo-image=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fchuang-wai.appspot.com%2Fo%2F0.4270071503869033.png%3Falt%3Dmedia%26token%3Dcf75b2ee-bdeb-4465-84ce-59b5b45b9b1e)

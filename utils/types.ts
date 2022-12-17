@@ -17,6 +17,12 @@ export type Article = {
     cover: string
 }
 
+export type Tag = {
+    id: string
+    name: string
+    description: string
+}
+
 export type ArticleText = {
     id: string
     md: string

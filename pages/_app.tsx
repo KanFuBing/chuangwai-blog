@@ -16,7 +16,6 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
     getAnalytics()
     getPerformance()
-
     if (process.env.NEXT_PUBLIC_ENV === 'development') {
       self['FIREBASE_APPCHECK_DEBUG_TOKEN'] = true
     }
