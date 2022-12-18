@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { addDoc, doc, collection, DocumentData, DocumentSnapshot, getFirestore, QuerySnapshot, setDoc, deleteDoc, updateDoc, FieldValue, AddPrefixToKeys, getDocs } from 'firebase/firestore'
+import { addDoc, doc, collection, DocumentData, DocumentSnapshot, getFirestore, QuerySnapshot, setDoc, deleteDoc, updateDoc, FieldValue, AddPrefixToKeys, getDocs, WriteBatch } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 
@@ -29,6 +29,6 @@ export const updateFbDoc = (colName: string, docName: string, data: { [x: string
     updateDoc(doc(db, colName, docName), data)
 )
 
-export const deleteFbDoc = (colName: string, docName: string) => (
-    deleteDoc(doc(db, colName, docName))
+export const deleteFbDoc = (colName: string, docName: string, batch?: WriteBatch) => (
+    batch ? batch.delete(doc(db, colName, docName)) : deleteDoc(doc(db, colName, docName))
 )

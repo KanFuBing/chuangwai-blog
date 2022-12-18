@@ -43,7 +43,7 @@ const TagEditPage = ({ docs, settings }: TagEditPageProps) => {
 
     const [isRechecking, setIsRechecking] = useState(false)
     const deleteTag = async () => {
-        await Promise.all([deleteFbDoc('tags', tag.id)])
+        await deleteFbDoc('tags', tag.id)
         router.push('/console')
     }
 

@@ -1,4 +1,5 @@
 import { Box, Button, Divider, TextField } from '@mui/material'
+import { writeBatch } from 'firebase/firestore'
 import { GetServerSideProps } from 'next'
 import router from 'next/router'
 import { ChangeEvent, useState } from 'react'
@@ -6,7 +7,7 @@ import Popup from '../../../components/popup'
 import Recheck from '../../../components/recheck'
 import Layout from '../../../layout'
 import { ssGetDocSnap } from '../../../utils/admin'
-import { deleteFbDoc, setFbDoc, updateFbDoc } from '../../../utils/firebase'
+import { db, deleteFbDoc, setFbDoc, updateFbDoc } from '../../../utils/firebase'
 import propsWrapper from '../../../utils/ssr'
 import { BlogPageProps, Article, ArticleText } from '../../../utils/types'
 
@@ -74,7 +75,10 @@ const ArticleEditPage = ({ docs, settings }: ArticleEditPageProps) => {
 
     const [isRechecking, setIsRechecking] = useState(false)
     const deleteArticle = async () => {
-        await Promise.all([deleteFbDoc('articles', article.id), deleteFbDoc('texts', article.id)])
+        const batch = writeBatch(db)
+        deleteFbDoc('articles', article.id, batch)
+        deleteFbDoc('texts', article.id, batch)
+        await batch.commit()
         router.push('/console')
     }
 

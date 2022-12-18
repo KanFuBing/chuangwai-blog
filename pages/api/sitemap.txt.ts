@@ -26,5 +26,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         `${prefix}404`,
         `${prefix}500`,
     ]
-    res.status(200).send(`https://chuangwai.top/\nhttps://chuangwai.top/tag/Web`)
+    res.status(200).send(urls.join('\n'))
 }
