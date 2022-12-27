@@ -81,6 +81,7 @@ const TagEditPage = ({ docs, settings }: TagEditPageProps) => {
                 <TextField
                     required
                     fullWidth
+                    multiline
                     label={'description'}
                     onChange={handleDescriptionChange}
                     value={description}

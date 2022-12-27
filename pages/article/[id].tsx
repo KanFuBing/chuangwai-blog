@@ -35,6 +35,8 @@ const ArticlePage = ({ docs, settings }: ArticlePageProps) => {
                 {new Date(time).toLocaleDateString()}
             </Typography>
             <Tags tags={tags}></Tags>
+            <br></br><br></br>
+            <Divider sx={{ boxShadow: '3px 3px 3px black' }}></Divider>
             <TrustedMarkdown>
                 {md}
             </TrustedMarkdown>
