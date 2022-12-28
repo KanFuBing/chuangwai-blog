@@ -22,9 +22,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         prefix,
         ...articleIdsPaths,
         ...articleTagsPaths,
-        `${prefix}403`,
-        `${prefix}404`,
-        `${prefix}500`,
     ]
     res.status(200).send(urls.join('\n'))
 }

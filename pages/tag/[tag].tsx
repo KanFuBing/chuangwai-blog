@@ -1,5 +1,6 @@
 import { Divider, Typography } from '@mui/material'
 import { GetServerSideProps } from 'next'
+import { TrustedMarkdown } from '../../components/markdown'
 import ArticlePreview from '../../components/preview'
 import Layout from '../../layout'
 import { adminDb } from '../../utils/admin'
@@ -21,13 +22,14 @@ const TaggedArticlesPage = ({ docs, tag, settings }: TaggedArticlesPageProps) =>
       {
         description
           ?
-          <Typography variant='body1' sx={{
-            position: 'relative',
+          <Typography style={{
             opacity: 0.9,
             borderLeft: '1px solid #1abc9c',
             paddingLeft: '1em',
             margin: '1em 3em 1em 2em'
-          }}>{description}</Typography>
+          }}>
+            <TrustedMarkdown>{description}</TrustedMarkdown>
+          </Typography>
           :
           <br></br>
       }

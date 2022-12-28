@@ -34,11 +34,15 @@
 >      allow read;
 >    }
 >    match /settings/{document=**} {
->    	allow write: if isAdmin();
+>      allow write: if isAdmin();
 >      allow read;
 >    }
 >    match /texts/{document=**} {
->    	allow write: if isAdmin();
+>      allow write: if isAdmin();
+>      allow read;
+>    }
+>    match /tags/{document=**} {
+>      allow write: if isAdmin();
 >      allow read;
 >    }
 >    match /comments/{document=**} {
@@ -59,7 +63,7 @@
 >    	return request.auth.uid == 'Your Account UID in Firebase Authentication of Your App';
 >    }
 >   
->  match /{allPaths=**} {
+>  match /{allPaths} {
 >      allow read: if true;
 >      allow create: if isAdmin();
 >    }
