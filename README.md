@@ -63,7 +63,11 @@
 >    	return request.auth.uid == 'Your Account UID in Firebase Authentication of Your App';
 >    }
 >   
->  match /{allPaths} {
+>  match /{path} {
+>      allow read: if true;
+>    }
+>
+>  match /blog/{path} {
 >      allow read: if true;
 >      allow create: if isAdmin();
 >    }

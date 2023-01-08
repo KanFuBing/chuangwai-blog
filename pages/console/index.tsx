@@ -45,8 +45,8 @@ const ConsolePage = ({ docs, settings }: ConsolePageProps) => {
   const [url, setUrl] = useState('')
   const upload = () => {
     if (selectedFile) {
-      const fileName = `${Math.random()}.${selectedFile.name.split('.')[1]}`
-      uploadBytes(ref(storage, fileName), selectedFile).then(async snapshot => {
+      const path = `blog/${Math.random()}.${selectedFile.name.split('.')[1]}`
+      uploadBytes(ref(storage, path), selectedFile).then(async snapshot => {
         setUrl(await getDownloadURL(snapshot.ref))
       })
     }
